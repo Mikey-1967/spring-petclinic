@@ -13,12 +13,12 @@ pipeline {
       }
     }
 
-    #stage('sonar') {
-      #steps {
-        #script{
-          #def scannerHome= tool 'mikey_sonar';
+    # stage('sonar') {
+      # steps {
+        # script{
+          # def scannerHome= tool 'mikey_sonar';
        # withSonarQubeEnv('sonarqube_server') {
-                #sh "${scannerHome}/bin/sonar-scanner \
+                # sh "${scannerHome}/bin/sonar-scanner \
                      # -Dsonar.projectKey=mikey \
                       # -Dsonar.java.binaries=target/classes"
       #  }
