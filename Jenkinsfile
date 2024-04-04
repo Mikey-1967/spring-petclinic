@@ -13,19 +13,6 @@ pipeline {
       }
     }
 
-    stage('sonar') {
-      steps {
-         script{
-           def scannerHome= tool 'mikey_sonar';
-        withSonarQubeEnv('sonarqube_server') {
-                 sh "${scannerHome}/bin/sonar-scanner \
-                      -Dsonar.projectKey=pet-clinic \
-                       -Dsonar.java.binaries=target/classes"
-        }
-      }
-    }
-  }
-
     stage('sonar2') {
       steps {
         script{
