@@ -18,7 +18,8 @@ pipeline {
         script{
           def scannerHome= tool 'mikey_sonar';
         withSonarQubeEnv('sonarqube_server') {
-                sh "${scannerHome}/bin/sonar-scanner"
+                sh "${scannerHome}/bin/sonar-scanner \
+                      -Dsonar.projectKey=mikey"
         }
       }
     }
