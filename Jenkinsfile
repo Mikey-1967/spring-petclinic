@@ -15,10 +15,13 @@ pipeline {
 
     stage('sonar') {
       steps {
+        script{
+          def scannerHome= tool 'mikey_sonar';
         withSonarQubeEnv('sonarqube_server') {
-                sh 'mvn clean package sonar:sonar'
+                sh '${scannerHome}/bin/sonar-scanner'
         }
       }
     }
   }
+}
 }
