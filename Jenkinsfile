@@ -25,5 +25,18 @@ pipeline {
       }
     }
   }
+
+    stage('sonar2') {
+      steps {
+        script{
+          def scannerHome= tool 'mikey_sonar';
+        withSonarQubeEnv('sonarcloud_server') {
+                sh "${scannerHome}/bin/sonar-scanner \
+                      -Dsonar.projectKey=pet-clinic \
+                       -Dsonar.java.binaries=target/classes"
+        }
+        }
+      }
+    }
 }
 }
