@@ -20,7 +20,7 @@ pipeline {
         withSonarQubeEnv('sonarcloud_server') {
                 sh "${scannerHome}/bin/sonar-scanner \
                       -Dsonar.projectKey=mikey1 \
-                      -Dsonar.organisation=mikey1 \
+                      -Dsonar.organization=mikey1 \
                        -Dsonar.java.binaries=target/classes"
         }
         }
