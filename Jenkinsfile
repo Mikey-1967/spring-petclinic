@@ -19,7 +19,7 @@ pipeline {
           def scannerHome= tool 'mikey_sonar';
         withSonarQubeEnv('sonarqube_server') {
                 sh "${scannerHome}/bin/sonar-scanner \
-                      -Dsonar.projectKey=rock-star \
+                      -Dsonar.projectKey=petclinic \
                        -Dsonar.java.binaries=target/classes"
         }
       }
