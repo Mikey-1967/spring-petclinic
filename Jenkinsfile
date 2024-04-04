@@ -1,31 +1,23 @@
 pipeline {
-    agent any
-    parameters{
-        string(name: 'TEST', defaultValue: 'mikey', description: 'Waste fellow')
+  agent any
+  stages {
+    stage('clone') {
+      steps {
+        git url: 'https://github.com/spring-projects/spring-petclinic.git', branch: 'main'
+      }
     }
-    tools {
-        maven 'MAVEN'
-        jdk 'java'
-    }
-    triggers { pollSCM('* * * * *') }
-    stages {
-        stage('clone the url'){
-            steps {
-                git url: 'https://github.com/mikey1967/spring-petclinic.git', branch: 'main'
-            }
-        }
 
-        stage('build'){
-            steps {
-                sh 'mvn package'
-            }
-        }
-
-        stage ('testing paramater'){
-            steps{
-                echo "${params.TEST}"
-            }
-        }
+    stage('build') {
+      steps {
+        sh 'mvn package'
+      }
     }
-}
+
+    stage('sonar') {
+      steps {
+        withSonarQubeEnv('My SonarQube Server') {
+                sh 'mvn clean package sonar:sonar'
+        }
+      }
+    }
 
